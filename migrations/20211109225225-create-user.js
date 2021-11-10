@@ -26,6 +26,7 @@ module.exports = {
       password: {
         type: Sequelize.STRING(64),
         allowNull: false,
+        field: "password_hash",
       },
       birthday: {
         type: Sequelize.DATEONLY,
