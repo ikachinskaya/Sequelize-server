@@ -1,7 +1,7 @@
 const userRouter = require("express").Router();
 
 //импортируем UserController
-const UserController = require("../controllers/userControllers");
+const UserController = require("../controllers/userController");
 
 //запрос на получение данных
 //говорим каким методом, передаем путь и функцию, которую нужно исполнить
