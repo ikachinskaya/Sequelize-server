@@ -54,8 +54,12 @@ module.exports.updateUser = async (req, res, next) => {
       //returning: ["first_name" , "last_name"]
     });
 
-    const temp = updatedUser.get();
-    delete temp.password;
+    //1 способ
+    // const temp = updatedUser.get();
+    // delete temp.password;
+
+    //2 способ
+    updatedUser.password = undefined;
 
     res.send(updatedUser);
   } catch (error) {
@@ -74,6 +78,7 @@ module.exports.deleteUser = async (req, res, next) => {
     //   where: { id },
     // });
 
+    //недостаток: стучимся в БД 2 раза
     const foundUser = await User.findByPk(id);
     await foundUser.destroy();
 
