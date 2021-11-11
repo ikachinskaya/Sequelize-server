@@ -21,7 +21,7 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unigue: true,
+        unique: true,
       },
       password: {
         type: Sequelize.STRING(64),
@@ -53,3 +53,7 @@ module.exports = {
     await queryInterface.dropTable("users");
   },
 };
+
+//queryInterface - интерфейс, который sequelize использует для взаимодействия с БД
+//принимает имя таблицы и объект настроек
+//происходит aсинхронно
