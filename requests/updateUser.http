@@ -1,8 +1,8 @@
-PATCH http://localhost:3000/api/user/11 HTTP/1.1
+PATCH http://localhost:3000/api/users/13 HTTP/1.1
 Content-Type: application/json
 
 {
   "firstName": "Updated User new",
   "lastName": "Updated User New",
-  "email": "t999900033@test.com"  
+  "email": "t9sfsdfd33@test.com"  
 }
