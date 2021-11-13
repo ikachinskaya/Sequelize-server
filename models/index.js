@@ -22,7 +22,7 @@ const env = process.env.NODE_ENV || "development";
 //[env] - свойство в объекте, т.е. "development" из config
 const config = require(__dirname + "/../config/config.json")[env];
 
-//пустой объект
+//пустой объект, в котором лежат все модели
 const db = {};
 
 //экземпляр для связи с БД
