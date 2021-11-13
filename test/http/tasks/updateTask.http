@@ -1,0 +1,9 @@
+PATCH http://localhost:3000/api/tasks/9 HTTP/1.1
+Content-Type: application/json
+
+
+{
+ "body": "updated task",
+ "deadline": "2021-12-01",
+ "isDone": true
+}
