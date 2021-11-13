@@ -15,6 +15,7 @@ module.exports.getTask = async (req, res, next) => {
       body,
       params: { id },
     } = req;
+    console.log(body)
     const task = await Task.findAll({
       where: { id },
     });
@@ -58,8 +59,9 @@ module.exports.deleteTask = async (req, res, next) => {
 //===================================================================
 module.exports.createTask = async (req, res, next) => {
   try {
-    const { body } = req;
-    const newTask = await Task.create(body);
+    const { body, params: {userId} } = req;
+    console.log(body)
+    const newTask = await Task.create({...body, userId});
     res.send(newTask);
   } catch (error) {
     next(error);

@@ -8,7 +8,7 @@ const TaskController = require("../controllers/taskController");
 taskRouter.get("/", TaskController.getTasks);
 
 //запрос на создание данных
-taskRouter.post("/", TaskController.createTask);
+taskRouter.post("/:userId", TaskController.createTask);
 
 taskRouter.patch("/:id", TaskController.updateTask);
 
