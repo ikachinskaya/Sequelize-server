@@ -15,8 +15,6 @@ router.use("/users", userRouter);
 
 router.use("/tasks", taskRouter);
 
-router.use("/posts", postRouter);
-
 router.use("/groups", groupRouter);
 
 module.exports = router;

@@ -72,12 +72,8 @@ module.exports.deletePost = async (req, res, next) => {
 //создание поста с магическим методом
 module.exports.createPost = async (req, res, next) => {
   try {
-    const {
-      body,
-      params: { userId },
-    } = req;
+    const { body, userInstance } = req;
 
-    const userInstance = await User.findByPk(userId);
     const newPost = await userInstance.createPost(body);
 
     res.send({ data: newPost });
@@ -110,12 +106,11 @@ module.exports.createPost = async (req, res, next) => {
 module.exports.getUserPosts = async (req, res, next) => {
   try {
     const {
-      params: { userId },
+      userInstance,
     } = req;
-
-    const user = await User.findByPk(userId);
-    const userPosts = await user.getPosts();
-    const userWithPosts = { user, userPosts };
+   
+    const userPosts = await userInstance.getPosts();
+    const userWithPosts = { userInstance, userPosts };
 
     res.send({ data: userWithPosts });
   } catch (error) {
@@ -127,11 +122,10 @@ module.exports.getUserPosts = async (req, res, next) => {
 module.exports.deletePostsUser = async (req, res, next) => {
   try {
     const {
-      params: { userId },
+      userInstance
     } = req;
-
-    const user = await User.findByPk(userId);
-    const userPosts = await user.getPosts();
+  
+    const userPosts = await userInstance.getPosts();
     deletedItems = await Post.destroy({
       where: { userId: user.id },
     });

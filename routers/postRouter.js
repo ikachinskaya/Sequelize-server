@@ -8,16 +8,16 @@ const PostController = require("../controllers/postController");
 postRouter.get("/", PostController.getPosts);
 
 //запрос на создание данных
-postRouter.post("/:userId", PostController.createPost);
+postRouter.post("/", PostController.createPost);
 
-postRouter.patch("/:id", PostController.updatePost);
+//postRouter.patch("/:id", PostController.updatePost);
 
-postRouter.post("/:id", PostController.getPost);
+//postRouter.post("/:id", PostController.getPost);
 
 //postRouter.delete("/:id", PostController.deletePost);
 
-postRouter.get("/:userId", PostController.getUserPosts);
+postRouter.get("/", PostController.getUserPosts);
 
-postRouter.delete("/:userId", PostController.deletePostsUser);
+postRouter.delete("/", PostController.deletePostsUser);
 
 module.exports = postRouter;
