@@ -15,6 +15,9 @@ const bodyParser = express.json(); //data stream->JSON->JS объект->req.bod
 app.use(bodyParser);
 //теперь сервер умеет работать с JSON-файлами
 
+//для предоставления статических файлов
+app.use(express.static('public'));
+
 //подключаем роутер
 app.use("/api", router);
 

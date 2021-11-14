@@ -15,3 +15,23 @@ module.exports.createGroup = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.createImage = async (req, res, next) => {
+  try {
+    const {
+      params: { groupId },
+      file: { filename },
+    } = req;
+    const [rows, updatedGroup] = await Group.update(
+      { imagePath: filename },
+      {
+        where: { id: groupId },
+        returning: true,
+      }
+    );
+
+    res.send({ data: updatedGroup });
+  } catch (error) {
+    next(error);
+  }
+};
