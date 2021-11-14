@@ -18,5 +18,20 @@ app.use(bodyParser);
 //подключаем роутер
 app.use("/api", router);
 
+//обработчик ошибок
+app.use(function (err, req, res, next) {
+  // if (err instanceof ApplicationError) {
+  //   if (err instanceof HostNotFoundError) {
+  //     res.status(404).send({
+  //       errors: [{ message: err.message }],
+  //     });
+  //   }
+  // }
+
+  res.send({
+    errors: [{ message: err.message }],
+  });
+});
+
 //экспортируем приложение
 module.exports = app;
