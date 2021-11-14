@@ -28,7 +28,7 @@ app.use(function (err, req, res, next) {
   //   }
   // }
 
-  res.send({
+  res.status(500).send({
     errors: [{ message: err.message }],
   });
 });
