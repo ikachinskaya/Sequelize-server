@@ -3,7 +3,7 @@ const { User, Post } = require("../models");
 module.exports.getPosts = async (req, res, next) => {
   try {
     const posts = await Post.findAll();
-    res.send(posts);
+    res.send({ data: posts });
   } catch (error) {
     next(error);
   }
@@ -18,7 +18,7 @@ module.exports.getPost = async (req, res, next) => {
     const post = await Post.findAll({
       where: { id },
     });
-    res.send(post);
+    res.send({ data: post });
   } catch (error) {
     next(error);
   }
@@ -50,7 +50,7 @@ module.exports.deletePost = async (req, res, next) => {
     const foundPost = await Post.findByPk(id);
     await foundPost.destroy();
 
-    res.send(foundPost);
+    res.send({ data: foundPost });
   } catch (error) {
     next(error);
   }
@@ -80,7 +80,7 @@ module.exports.createPost = async (req, res, next) => {
     const userInstance = await User.findByPk(userId);
     const newPost = await userInstance.createPost(body);
 
-    res.send(newPost);
+    res.send({ data: newPost });
   } catch (error) {
     next(error);
   }
@@ -117,7 +117,7 @@ module.exports.getUserPosts = async (req, res, next) => {
     const userPosts = await user.getPosts();
     const userWithPosts = { user, userPosts };
 
-    res.send(userWithPosts);
+    res.send({ data: userWithPosts });
   } catch (error) {
     next(error);
   }
@@ -136,7 +136,7 @@ module.exports.deletePostsUser = async (req, res, next) => {
       where: { userId: user.id },
     });
 
-    res.send(userPosts);
+    res.send({ data: userPosts });
   } catch (error) {
     next(error);
   }
