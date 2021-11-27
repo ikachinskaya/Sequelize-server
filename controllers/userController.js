@@ -15,10 +15,12 @@ const { User } = require("../models");
 //вернуть всё, кроме пароля
 module.exports.getUsers = async (req, res, next) => {
   try {
+    const { pagination } = req;
     const users = await User.findAll({
       attributes: {
         exclude: ["password"],
       },
+      ...pagination,
     });
     res.send(users);
   } catch (error) {
