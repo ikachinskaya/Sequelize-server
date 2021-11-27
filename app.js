@@ -8,6 +8,8 @@ const router = require("./routers");
 //создаем экспресс-приложение
 const app = express();
 
+const { errorHandler } = require("./middlewares/errorHandlers");
+
 //специальная промежуточная функция(middleWare), которая знает, как обрабатывать полученные JSON-данные
 const bodyParser = express.json(); //data stream->JSON->JS объект->req.body
 
@@ -22,13 +24,7 @@ app.use(express.static("public"));
 app.use("/api", router);
 
 //обработчик ошибок
-app.use(function (err, req, res, next) {
-  const status = err.status || 500;
-
-  res.status(status).send({
-    errors: [{ message: err.message }],
-  });
-});
+app.use(errorHandler);
 
 //экспортируем приложение
 module.exports = app;
