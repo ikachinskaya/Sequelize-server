@@ -16,22 +16,16 @@ app.use(bodyParser);
 //теперь сервер умеет работать с JSON-файлами
 
 //для предоставления статических файлов
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 //подключаем роутер
 app.use("/api", router);
 
 //обработчик ошибок
 app.use(function (err, req, res, next) {
-  // if (err instanceof ApplicationError) {
-  //   if (err instanceof HostNotFoundError) {
-  //     res.status(404).send({
-  //       errors: [{ message: err.message }],
-  //     });
-  //   }
-  // }
+  const status = err.status || 500;
 
-  res.status(500).send({
+  res.status(status).send({
     errors: [{ message: err.message }],
   });
 });
